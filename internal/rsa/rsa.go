@@ -9,7 +9,6 @@ import (
 	"github.com/Horiodino/key-length/internal/types"
 )
 
-// RSAKey represents an RSA key for length evaluation, supporting PEM and X.509 DER formats.
 type RSAKey struct {
 	data      []byte
 	cert      *x509.Certificate
@@ -64,7 +63,6 @@ func NewRSAKey(data []byte) (*RSAKey, error) {
 		}
 	}
 
-	// If not PEM, attempt to parse as raw DER X.509 certificate
 	cert, err := x509.ParseCertificate(data)
 	if err == nil && cert.PublicKeyAlgorithm == x509.RSA {
 		r.cert = cert
@@ -109,12 +107,8 @@ func (r *RSAKey) AdjustForYear(year int) int {
 	return baseThreshold + additionalBits
 }
 
-func (r *RSAKey) isPrivateKey() bool {
-	block, _ := pem.Decode(r.data)
-	if block != nil && block.Type == "RSA PRIVATE KEY" {
-		r.isPrivate = true
-	}
-	return false
+func (r *RSAKey) GetAlgorithm() string {
+	return "RSA"
 }
 
 var _ types.KeyLengthEvaluator = (*RSAKey)(nil)

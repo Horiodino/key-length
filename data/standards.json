@@ -1,0 +1,19 @@
+{
+  "standards": {
+    "NIST": {
+      "RSA": 2048,
+      "ECC": 256,
+      "Symmetric": 128
+    },
+    "IETF": {
+      "RSA": 2048,
+      "ECC": 256,
+      "Symmetric": 128
+    },
+    "BSI": {
+      "RSA": 3072,
+      "ECC": 256,
+      "Symmetric": 128
+    }
+  }
+}
