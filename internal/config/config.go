@@ -7,9 +7,10 @@ import (
 )
 
 type Standard struct {
-	RSA       int `json:"RSA"`
-	ECC       int `json:"ECC"`
-	Symmetric int `json:"Symmetric"`
+	RSA        int `json:"RSA"`
+	ECC        int `json:"ECC"`
+	Symmetric  int `json:"Symmetric"`
+	CutOffYear int `json:"cut_off_year"`
 }
 
 type Standards struct {
@@ -51,16 +52,23 @@ func NewConfig(standardsFile string, selectedStandard string) (*Config, error) {
 
 func (c *Config) GetThreshold(algorithm string) int {
 	standard := c.standards.Standards[c.SelectedStandard]
+	currentYear := 2025
+	cutOffYear := standard.CutOffYear
+
+	threshold := 0
 	switch algorithm {
 	case "RSA":
-		return standard.RSA
+		threshold = standard.RSA
+		if currentYear > cutOffYear {
+			threshold = 3072
+		}
 	case "ECC":
-		return standard.ECC
+		threshold = standard.ECC
 	case "Symmetric":
-		return standard.Symmetric
-	default:
-		return 0
+		threshold = standard.Symmetric
 	}
+
+	return threshold
 }
 
 func (c *Config) AvailableStandards() []string {
