@@ -68,8 +68,7 @@ func TestNewRSAKey(t *testing.T) {
 		}
 		if key == nil {
 			t.Errorf("Expected non-nil RSAKey")
-		}
-		if !key.isPrivate {
+		} else if !key.isPrivate {
 			t.Errorf("Expected key to be marked as private")
 		}
 	})
