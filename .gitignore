@@ -1,0 +1,17 @@
+# Ignore all logfiles and tempfiles.
+/log/*
+/tmp/*
+!/log/.keep
+!/tmp/.keep
+
+# IDE config files
+.idea
+.vscode
+.DS_Store
+
+.env
+!.env.example
+
+artifacts/
+bin/
+tmp/

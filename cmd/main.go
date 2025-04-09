@@ -276,7 +276,6 @@ var tlsCmd = &cobra.Command{
 		} else if len(ports) > 1 && totalResults == 0 {
 			display.PrintError("No TLS connections could be successfully evaluated.")
 		}
-
 	},
 }
 

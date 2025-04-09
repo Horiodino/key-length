@@ -3,6 +3,7 @@ package display
 import (
 	"fmt"
 	"os"
+	"strconv"
 	"strings"
 
 	"github.com/charmbracelet/bubbles/spinner"
@@ -102,7 +103,7 @@ func PrintScanSummary(host string, portsScanned, secureCount int) {
 
 	PrintInfo(
 		FormatKeyValue("Host", host),
-		FormatKeyValue("Ports Scanned", fmt.Sprintf("%d", portsScanned)),
+		FormatKeyValue("Ports Scanned", strconv.Itoa(portsScanned)),
 		FormatKeyValue("Secure Ports", fmt.Sprintf("[%s] %s", statusSymbol, ratio)),
 	)
 }
